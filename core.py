@@ -1,11 +1,13 @@
 #this is PyXi bot core
 
-import interpret
+import interpret, vars
 
-print('PyXi bot v. 0.0')
+print(f'PyXi bot v. {vars.version}')
 while True:
-    command = input()
-    if command == 'test':
+    com = input()
+    if com == 'test':
         interpret.test()
-    elif command == 'q':
+    if com == 'ver':
+        interpret.version()
+    elif com == 'q':
         break
