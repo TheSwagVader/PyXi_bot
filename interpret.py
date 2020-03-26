@@ -63,6 +63,5 @@ def PyXi_do(command):
         status(splt_com[1])
     elif splt_com[0] == 'register':
         register(splt_com[1], splt_com[2])
-
     else:
         print(f'{command} not defined')

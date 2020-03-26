@@ -8,8 +8,8 @@ if vars.default_cls:
     PyXi_do('cls')
 print(f'PyXi bot ver. {vars.version}')
 while True:
-    com = input()
-    if com == 'q':
+    com = input(f'{vars.base_name}>')
+    if com == 'shutdown':
         break
     else:
         PyXi_do(com)
