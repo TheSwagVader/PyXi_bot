@@ -1,15 +1,25 @@
 #this is PyXi bot core
 
-import vars
+import variables
 
 from interpret import PyXi_do
 
-if vars.default_cls:
+current = variables.none_root_name
+root = False
+if variables.default_cls:
     PyXi_do('cls')
-print(f'PyXi bot ver. {vars.version}')
+if variables.launch_as_root:
+    root = True
+print(f'PyXi bot ver. {variables.version}')
 while True:
-    com = input(f'{vars.base_name}>')
+    if root:
+        com = input(f'{variables.base_name}>{variables.root_name}>')
+    else:
+        com = input(f'{variables.base_name}>{current}>')
     if com == 'shutdown':
         break
     else:
-        PyXi_do(com)
+        if root:
+            PyXi_do(com, root)
+        else:
+            PyXi_do(com)

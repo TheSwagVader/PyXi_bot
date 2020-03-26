@@ -1,13 +1,14 @@
 #this file contains defs, needed for PyXi bot
 
-import vars, os
+import variables, os
 
-user_db = open(vars.users_file_path, 'r', encoding='utf8')
-users = [[],[]] # name, role
+user_db = open(variables.users_file_path, 'r', encoding='utf8')
+users = [[],[],[]] # name, password, role
 #db load
 for line in user_db.readlines():
     users[0].append(line[line.find('[')+1:line.find(']')])
     users[1].append(line[line.rfind('[')+1:line.rfind(']')])
+    users[2].append(line[line.find('<')+1:line.find('>')])
 user_db.close()
 #end db load
 def test():
@@ -20,7 +21,7 @@ def version():
     """
     Prints current PyXi version
     """
-    print(vars.version)
+    print(variables.version)
 
 def cls():
     """
@@ -28,26 +29,35 @@ def cls():
     """
     os.system('cls' if os.name=='nt' else 'clear')
 
-def status(user):
+def status(user, root = False):
     """
     Displays user status
     """
     try:
         user_index = users[0].index(user)
-        print(f'User: {user}, Role: {users[1][user_index]}')
+        if root:
+            print(f'User: {user}, Password: {users[1][user_index]}, Role: {users[2][user_index]}')
+        else:
+            if variables.status_block_users.find(user) == -1:
+                print(f'User: {user}, Role: {users[2][user_index]}')
+            else:
+                print('You can see status of this user')
     except:
         print(f'{user} not registered in database')
 
-def register(username,role):
+def register(username, password, role, root = False):
     """
     Registers new user with role
     """
-    addf = open(vars.users_file_path, 'a', encoding='utf8')
-    addf.write(f'[{username}][{role}]\n')
-    addf.close()
-    print(f'Add new user: {username} with role {role}')
+    if root:
+        addf = open(variables.users_file_path, 'a', encoding='utf8')
+        addf.write(f'[{username}][{password}]<{role}>\n')
+        addf.close()
+        print(f'Add new user: {username} with password {password} role {role}')
+    else:
+        print('You do not have premission to run this command')
 
-def PyXi_do(command):
+def PyXi_do(command, root_status = False):
     """
     PyXi command interpreter
     Do any function or prints error if it not defined
@@ -60,8 +70,8 @@ def PyXi_do(command):
     elif splt_com[0] == 'cls':
         cls()
     elif splt_com[0] == 'status':
-        status(splt_com[1])
+        status(splt_com[1], root_status)
     elif splt_com[0] == 'register':
-        register(splt_com[1], splt_com[2])
+        register(splt_com[1], splt_com[2], splt_com[3])
     else:
         print(f'{command} not defined')
