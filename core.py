@@ -1,13 +1,15 @@
 #this is PyXi bot core
 
-import interpret, vars
+import vars
 
-print(f'PyXi bot v. {vars.version}')
+from interpret import PyXi_do
+
+if vars.default_cls:
+    PyXi_do('cls')
+print(f'PyXi bot ver. {vars.version}')
 while True:
     com = input()
-    if com == 'test':
-        interpret.test()
-    if com == 'ver':
-        interpret.version()
-    elif com == 'q':
+    if com == 'q':
         break
+    else:
+        PyXi_do(com)
