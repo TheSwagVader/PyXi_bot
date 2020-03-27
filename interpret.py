@@ -83,9 +83,12 @@ def PyXi_do(command, root_status = False):
     elif splt_com[0] == 'register':
         register(splt_com[1], splt_com[2], splt_com[3])
     elif splt_com[0] == 'help':
-        if variables.command_db.find(splt_com[1]) == -1:
-            print(f'{splt_com[1]} not defined')
+        if len(splt_com) == 1:
+            help()
         else:
-            help(splt_com[1])
+            if variables.command_db.find(splt_com[1]) == -1:
+                print(f'{splt_com[1]} not defined')
+            else:
+                help(splt_com[1])
     else:
         print(f'{command} not defined')
