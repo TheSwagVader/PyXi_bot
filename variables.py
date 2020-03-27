@@ -1,6 +1,6 @@
 #this file contains system vars. Config file?
 
-version = '0.0.7'
+version = '0.0.8'
 default_cls = False
 launch_as_root = True
 users_file_path = 'users'
@@ -18,5 +18,6 @@ help_dict = {
     'cls' : 'cls : clears terminal',
     'version' : 'version : prints current PyXi version',
     'test' : 'test : test function',
-    'shutdown' : 'shutdown : shutdown PyXi bot'
+    'shutdown' : 'shutdown : shutdown PyXi bot',
+    'echo' : 'echo(text) : just prints text'
 }

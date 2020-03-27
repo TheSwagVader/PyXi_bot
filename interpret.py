@@ -65,6 +65,23 @@ def help(what = 'none'):
     else:
         print(variables.help_dict[what])
 
+#TODO add root enable command
+#{def root_enable(who):
+#   if who == variables.root_name:
+#       print('You are root')
+#   else:
+#       enter = input('Root password: ')
+#       if enter == variables.root_password:
+#           print('Root activated')
+#           return variables.root_name
+#       else:
+#           print('Incorrect root password')
+
+def echo(text = ''):
+    """
+    Just prints text
+    """
+    print(text)
 
 def PyXi_do(command, root_status = False):
     """
@@ -90,5 +107,10 @@ def PyXi_do(command, root_status = False):
                 print(f'{splt_com[1]} not defined')
             else:
                 help(splt_com[1])
+    elif splt_com[0] == 'echo':
+        if len(splt_com) == 1:
+            echo()
+        else:
+            echo(splt_com[1])
     else:
         print(f'{command} not defined')
