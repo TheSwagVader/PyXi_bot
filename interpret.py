@@ -57,16 +57,16 @@ def register(username, password, role, root = False):
     else:
         print(f'{variables.forrbid_str}')
 
-def help(what = 'none'):
+def PyXi_help(what = 'none'):
     if what == 'none':
         print(
-            'Use help <command> for get info about this command'
+            'Use PyXi_help <command> for get info about this command'
         )
     else:
         print(variables.help_dict[what])
 
 #TODO add root enable command
-#{def root_enable(who):
+#def root_enable(who):
 #   if who == variables.root_name:
 #       print('You are root')
 #   else:
@@ -82,6 +82,14 @@ def echo(text = ''):
     Just prints text
     """
     print(text)
+
+def show_users():
+    # TODO Add filter feature
+    """
+    Prints full list of users
+    """
+    for user in users[0]:
+        print(user)
 
 def PyXi_do(command, root_status = False):
     """
@@ -99,18 +107,20 @@ def PyXi_do(command, root_status = False):
         status(splt_com[1], root_status)
     elif splt_com[0] == 'register':
         register(splt_com[1], splt_com[2], splt_com[3])
-    elif splt_com[0] == 'help':
+    elif splt_com[0] == 'PyXi_help':
         if len(splt_com) == 1:
-            help()
+            PyXi_help()
         else:
             if variables.command_db.find(splt_com[1]) == -1:
                 print(f'{splt_com[1]} not defined')
             else:
-                help(splt_com[1])
+                PyXi_help(splt_com[1])
     elif splt_com[0] == 'echo':
         if len(splt_com) == 1:
             echo()
         else:
             echo(splt_com[1])
+    elif splt_com[0] == 'show_users':
+        show_users()
     else:
         print(f'{command} not defined')

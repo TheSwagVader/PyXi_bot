@@ -1,6 +1,6 @@
 #this file contains system vars. Config file?
 
-version = '0.0.8'
+version = '0.0.8rc'
 default_cls = False
 launch_as_root = True
 users_file_path = 'users'
@@ -11,7 +11,7 @@ none_root_name = 'none'
 status_block_users = 'root.'
 log_enable = True
 forrbid_str = 'You do not have premission to run this command'
-command_db = 'test.cls.version.register.status'
+command_db = 'test.cls.version.register.status.shutdown.echo.show_users.'
 help_dict = {
     'register' : 'register(username, password, role, root = False) : registers new user with role, requires root',
     'status' : 'status(user, root = False) : Displays user status',
@@ -19,5 +19,6 @@ help_dict = {
     'version' : 'version : prints current PyXi version',
     'test' : 'test : test function',
     'shutdown' : 'shutdown : shutdown PyXi bot',
-    'echo' : 'echo(text) : just prints text'
+    'echo' : 'echo(text) : just prints text',
+    'show_users' : 'show_users : prints full list of users'
 }
