@@ -55,7 +55,16 @@ def register(username, password, role, root = False):
         addf.close()
         print(f'Add new user: {username} with password {password} role {role}')
     else:
-        print('You do not have premission to run this command')
+        print(f'{variables.forrbid_str}')
+
+def help(what = 'none'):
+    if what == 'none':
+        print(
+            'Use help <command> for get info about this command'
+        )
+    else:
+        print(variables.help_dict[what])
+
 
 def PyXi_do(command, root_status = False):
     """
@@ -73,5 +82,10 @@ def PyXi_do(command, root_status = False):
         status(splt_com[1], root_status)
     elif splt_com[0] == 'register':
         register(splt_com[1], splt_com[2], splt_com[3])
+    elif splt_com[0] == 'help':
+        if variables.command_db.find(splt_com[1]) == -1:
+            print(f'{splt_com[1]} not defined')
+        else:
+            help(splt_com[1])
     else:
         print(f'{command} not defined')
