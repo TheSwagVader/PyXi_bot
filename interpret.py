@@ -2,9 +2,13 @@
 
 import variables, os
 
-user_db = open(variables.users_file_path, 'r', encoding='utf8')
 users = [[],[],[]] # name, password, role
 #db load
+if variables.first_launch:
+    with open(variables.users_file_path, 'w+', encoding='utf8') as init:
+        init.write('[root][--NONE--]<god>\n')
+        variables.first_launch = False
+user_db = open(variables.users_file_path, 'r+', encoding='utf8')
 for line in user_db.readlines():
     users[0].append(line[line.find('[')+1:line.find(']')])
     users[1].append(line[line.rfind('[')+1:line.rfind(']')])

@@ -1,6 +1,7 @@
 #this file contains system vars. Config file?
 
 version = '0.0.8rc'
+first_launch = True
 default_cls = False
 launch_as_root = True
 users_file_path = 'users'
